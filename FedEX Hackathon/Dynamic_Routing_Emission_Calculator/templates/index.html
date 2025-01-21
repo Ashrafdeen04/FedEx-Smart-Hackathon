@@ -4,47 +4,84 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Real-Time Route Optimizer</title>
+    <!-- External CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <!-- Leaflet CSS for Maps -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css">
+    <style>
+        /* Inline Styles for Animations (if not in CSS file) */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 1.2s ease-in-out;
+        }
+
+        .slide-in {
+            animation: slideIn 1.2s ease-in-out;
+        }
+    </style>
 </head>
 <body>
-    <!-- Form Container -->
-    <div class="form-container fade-in">
-        <h3>Route Optimization</h3>
-        <form id="route-form">
-            <input type="text" id="start-address" placeholder="Start Address" required>
-            <input type="text" id="end-address" placeholder="End Address" required>
-            <select id="vehicle-type">
-                <option value="car">Car</option>
-                <option value="truck">Truck</option>
-                <option value="small_truck">Light Truck</option>
-            </select>
-            <button type="submit">Start Tracking</button>
-        </form>
-        <div id="loading-bar">
-            <div class="progress"></div>
+    <!-- Navbar -->
+    <header class="nav-bar fade-in">
+        <h1>Real-Time Route Optimizer</h1>
+        <a href="/logout" class="logout-link">Logout</a>
+    </header>
+
+    <!-- Main Section -->
+    <main>
+        <!-- Form Container -->
+        <div class="form-container fade-in">
+            <h2>Route Optimization</h2>
+            <form id="route-form">
+                <input type="text" id="start-address" placeholder="Start Address" required>
+                <input type="text" id="end-address" placeholder="End Address" required>
+                <select id="vehicle-type">
+                    <option value="car">Car</option>
+                    <option value="truck">Truck</option>
+                    <option value="small_truck">Light Truck</option>
+                </select>
+                <button type="submit" class="lightning-button">
+                    <span>Start Tracking</span>
+                </button>
+            </form>
+            <!-- Loading Bar -->
+            <div id="loading-bar" style="display: none;">
+                <div class="progress"></div>
+            </div>
         </div>
-    </div>
 
-    <!-- Map Container -->
-    <div id="map" class="fade-in"></div>
+        <!-- Map Section -->
+        <section id="map" class="fade-in"></section>
 
-    <!-- Live Data Container -->
-    <div class="data-container slide-in">
-        <h4>Live Data</h4>
-        <p id="current-location">Location: Loading...</p>
-        <p id="current-weather">Weather: Loading...</p>
-        <p id="current-aqi">Air Quality Index (AQI): Loading...</p>
-        <p id="current-traffic">Traffic Speed: Loading...</p>
-        <p id="current-co2">CO2 Emissions: Loading...</p>
-    </div>
+        <!-- Live Data Section -->
+        <aside class="data-container slide-in">
+            <h4>Live Updates</h4>
+            <p id="current-location">Location: Loading...</p>
+            <p id="current-weather">Weather: Loading...</p>
+            <p id="current-aqi">Air Quality Index (AQI): Loading...</p>
+            <p id="current-traffic">Traffic Speed: Loading...</p>
+            <p id="current-co2">CO2 Emissions: Loading...</p>
+        </aside>
+    </main>
 
+    <!-- Leaflet JS for Maps -->
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
     <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+    <!-- jQuery for AJAX Requests -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Custom JavaScript -->
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>

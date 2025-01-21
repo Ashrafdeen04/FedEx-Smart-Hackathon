@@ -141,7 +141,7 @@ def track_route(start_coords, end_coords, vehicle_type):
 
 # Connect to MySQL database to fetch or store user data
 def get_db_connection():
-    return pymysql.connect(host='localhost', user='root', password='your_password', database='route_optimizer')
+    return pymysql.connect(host='localhost', user='root', password='root', database='route_optimizer')
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -251,4 +251,112 @@ body {
     background-size: cover;
     background-position: center;
 }
+/* General Styles */
+body {
+    font-family: 'Roboto', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f4f7fc;
+    color: #333;
+}
+
+/* Navbar */
+.nav-bar {
+    background: #007bff;
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.nav-bar h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.nav-bar .logout-link {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.nav-bar .logout-link:hover {
+    text-decoration: underline;
+}
+
+/* Form Container */
+.form-container {
+    background: white;
+    border-radius: 10px;
+    padding: 20px 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    margin: 20px auto;
+    text-align: center;
+}
+
+/* Map Section */
+#map {
+    width: 100%;
+    height: 400px;
+    margin: 20px 0;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Live Data Section */
+.data-container {
+    background: #ffffff;
+    padding: 15px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 300px;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    font-size: 14px;
+    color: #333;
+}
+
+/* Buttons */
+button {
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+/* Progress Bar */
+#loading-bar {
+    height: 6px;
+    margin-top: 10px;
+    background: #e0e0e0;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+#loading-bar .progress {
+    height: 100%;
+    width: 0;
+    background: linear-gradient(to right, #4caf50, #81c784);
+    animation: loading 1.5s infinite;
+}
+
+/* Animations */
+@keyframes loading {
+    0% { width: 0; }
+    50% { width: 50%; }
+    100% { width: 100%; }
+}
+
 
