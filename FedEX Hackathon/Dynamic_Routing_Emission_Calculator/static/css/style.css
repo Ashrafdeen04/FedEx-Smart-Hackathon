@@ -3,133 +3,245 @@ body {
     font-family: 'Roboto', Arial, sans-serif;
     margin: 0;
     padding: 0;
+    background-color: #f4f7fc;
+    color: #333;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     height: 100vh;
-    background-color: #f4f4f9;
+    background: url('https://wallpapercave.com/wp/wp3704715.jpg') no-repeat center center fixed;
+    background-size: cover;
 }
 
-/* Map Container */
-#map {
-    height: calc(100vh - 120px);
-    width: 100%;
-    border-top: 5px solid #007bff;
-}
-
-/* Form Container */
-.form-container {
-    padding: 20px;
-    background: linear-gradient(135deg, #ffffff, #f4f4f9);
-    position: fixed;
-    top: 10px;
-    left: 10px;
-    z-index: 1000;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    max-width: 300px;
-    width: 100%;
-    animation: fadeIn 1s ease-in-out;
-}
-
-.form-container h3 {
-    margin-top: 0;
-    color: #007bff;
-    font-size: 20px;
-    text-align: center;
-    font-weight: bold;
-}
-
-.form-container input,
-.form-container select,
-.form-container button {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-    font-size: 14px;
-    transition: all 0.3s ease;
-}
-
-.form-container input:focus,
-.form-container select:focus {
-    border-color: #007bff;
-    outline: none;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-}
-
-.form-container button {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-}
-
-.form-container button:hover {
-    background-color: #0056b3;
-}
-
-/* Loading Bar */
-#loading-bar {
-    display: none;
-    height: 8px;
-    background: #e0e0e0;
-    border-radius: 5px;
-    overflow: hidden;
-    margin-top: 10px;
-}
-
-#loading-bar .progress {
-    height: 100%;
-    width: 0;
-    background: linear-gradient(to right, #4caf50, #81c784);
-    animation: progressBar 2s infinite;
-}
-
-@keyframes progressBar {
-    0% { width: 0; }
-    50% { width: 80%; }
-    100% { width: 100%; }
-}
-
-/* Live Data Container */
-.data-container {
-    position: fixed;
-    bottom: 10px;
-    right: 10px;
-    z-index: 1000;
-    background: #ffffff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    max-width: 300px;
-    overflow-y: auto;
-    animation: slideIn 1s ease-in-out;
-}
-
-.data-container h4 {
-    margin-top: 0;
-    color: #007bff;
-    font-size: 18px;
-}
-
-.data-container p {
-    font-size: 14px;
-    margin: 5px 0;
-    color: #555;
-}
-
-/* Animations */
+/* Animation for page load */
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
 }
 
-@keyframes slideIn {
-    from { transform: translateX(100%); }
-    to { transform: translateX(0); }
+/* Form Container */
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    animation: fadeIn 2s ease-in-out;
+}
+
+/* Form Card */
+.auth-card {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 40px 60px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+    color: #f0f0f0;
+}
+
+/* Title */
+.auth-title {
+    margin-top: 0;
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Input fields */
+input {
+    width: 100%;
+    padding: 14px;
+    margin: 12px 0;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+    background: #f9f9f9;
+    color: #333;
+    transition: all 0.3s ease;
+}
+
+input:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.6);
+}
+
+/* Submit Button */
+.lightning-button {
+    position: relative;
+    display: inline-block;
+    padding: 15px 30px;
+    color: white;
+    background: #007bff;
+    font-size: 18px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: background 0.3s ease;
+    width: 100%;
+}
+
+.lightning-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, #00c6ff, #007bff);
+    transition: left 0.5s ease;
+    z-index: 1;
+}
+
+.lightning-button:hover::before {
+    left: 0;
+}
+
+.lightning-button span {
+    position: relative;
+    z-index: 2;
+}
+
+/* Link */
+a {
+    color: #f0f0f0;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #007bff;
+}
+
+/* Navbar */
+.nav-bar {
+    background: #007bff;
+    color: white;
+    padding: 10px 20px;
+    width: 100%;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Route Page Layout */
+#map {
+    width: 100%;
+    height: 60vh;
+    margin-top: 20px;
+    border-radius: 8px;
+}
+
+/* Form on Route Page */
+.form-container {
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+    margin-top: 30px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+input[type="text"], input[type="number"], select {
+    width: 100%;
+    padding: 14px;
+    margin: 10px 0;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+    background: #f9f9f9;
+}
+
+/* Live Data Panel */
+.data-container {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    max-width: 300px;
+    width: 100%;
+    max-height: 400px;
+    font-size: 14px;
+    overflow-y: auto;
+    color: #333;
+}
+
+.data-container h4 {
+    margin-top: 0;
+    font-size: 16px;
+    font-weight: bold;
+    color: #007bff;
+}
+
+.data-container p {
+    font-size: 14px;
+    margin: 8px 0;
+}
+
+/* Progress Bar */
+#loading-bar {
+    display: none;
+    margin-top: 10px;
+    height: 6px;
+    background: linear-gradient(to right, #4caf50, #81c784);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+#loading-bar div {
+    height: 100%;
+    width: 0;
+    background: #66bb6a;
+    animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+    0% { width: 0; }
+    50% { width: 80%; }
+    100% { width: 100%; }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .auth-card {
+        padding: 20px;
+        max-width: 350px;
+    }
+
+    .auth-title {
+        font-size: 28px;
+    }
+
+    .lightning-button {
+        font-size: 16px;
+    }
+
+    .data-container {
+        max-width: 250px;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .auth-card {
+        padding: 15px;
+        max-width: 300px;
+    }
+
+    .auth-title {
+        font-size: 24px;
+    }
+
+    .lightning-button {
+        font-size: 14px;
+    }
 }
