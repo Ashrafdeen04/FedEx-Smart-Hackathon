@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-Time Route Optimizer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css">
+</head>
+<body>
+    <!-- Form Container -->
+    <div class="form-container">
+        <h3>Route Optimization</h3>
+        <form id="route-form">
+            <input type="text" id="start-address" placeholder="Start Address" required>
+            <input type="text" id="end-address" placeholder="End Address" required>
+            <select id="vehicle-type">
+                <option value="car">Car</option>
+                <option value="truck">Truck</option>
+                <option value="small_truck">Light Truck</option>
+            </select>
+            <button type="submit">Start Tracking</button>
+        </form>
+        <div id="loading-bar"><div></div></div>
+    </div>
+
+    <!-- Map Container -->
+    <div id="map"></div>
+
+    <!-- Live Data Container -->
+    <div class="data-container" id="live-data">
+        <h4>Live Data</h4>
+        <p id="current-location">Location: Loading...</p>
+        <p id="current-weather">Weather: Loading...</p>
+        <p id="current-aqi">Air Quality Index (AQI): Loading...</p>
+        <p id="current-traffic">Traffic Speed: Loading...</p>
+        <p id="current-co2">CO2 Emissions: Loading...</p>
+    </div>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
