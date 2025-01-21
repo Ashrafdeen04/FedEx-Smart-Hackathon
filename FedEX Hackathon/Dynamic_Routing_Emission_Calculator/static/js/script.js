@@ -14,6 +14,7 @@ const loadingBar = document.getElementById('loading-bar');
 // Show loading progress bar
 function showLoadingBar() {
     loadingBar.style.display = 'block';
+    loadingBar.querySelector('.progress').style.width = '0';
 }
 
 // Hide loading progress bar
