@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup - EcoRoute</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        html, body {
+            display: grid;
+            height: 100%;
+            width: 100%;
+            place-items: center;
+            background: #c3e8ec;
+        }
+        .wrapper {
+            width: 500px; /* Reduced the width */
+            padding: 30px; /* Adjusted padding */
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0px 15px 25px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+        .wrapper .title {
+            font-size: 24px; /* Reduced font size */
+            font-weight: 700;
+            text-align: center;
+            line-height: 100px; /* Adjusted line height */
+            color: #fff;
+            user-select: none;
+            border-radius: 15px 15px 0 0;
+            background: linear-gradient(-135deg, #c850c0, #4158d0);
+        }
+        .wrapper form {
+            padding: 20px 40px 40px 40px; /* Reduced padding */
+        }
+        .wrapper form .field {
+            height: 60px; /* Reduced field height */
+            margin-top: 20px; /* Reduced margin */
+            position: relative;
+        }
+        .wrapper form .field input {
+            height: 100%;
+            width: 100%;
+            font-size: 18px; /* Reduced font size */
+            padding-left: 20px; /* Adjusted padding */
+            border: 2px solid lightgrey; /* Adjusted border width */
+            border-radius: 30px; /* Reduced border radius */
+            transition: all 0.3s ease;
+        }
+        .wrapper form .field input:focus,
+        form .field input:valid {
+            border-color: #4158d0;
+        }
+        .wrapper form .field label {
+            position: absolute;
+            top: 50%;
+            left: 20px; /* Adjusted label padding */
+            font-size: 16px; /* Reduced font size */
+            color: #999999;
+            pointer-events: none;
+            transform: translateY(-50%);
+            transition: all 0.3s ease;
+        }
+        form .field input:focus ~ label,
+        form .field input:valid ~ label {
+            top: 0%;
+            font-size: 14px; /* Reduced label font size */
+            color: #4158d0;
+            background: #fff;
+            transform: translateY(-50%);
+        }
+        form .field input[type="submit"] {
+            height: 60px; /* Reduced button height */
+            font-size: 20px; /* Reduced font size */
+            font-weight: bold;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            background: linear-gradient(-135deg, #c850c0, #4158d0);
+            transition: all 0.3s ease;
+            border-radius: 30px; /* Reduced border radius */
+        }
+        form .field input[type="submit"]:hover {
+            opacity: 0.9;
+        }
+        form .signup-link {
+            font-size: 16px; /* Reduced font size */
+            color: #262626;
+            margin-top: 20px; /* Adjusted margin */
+            text-align: center;
+        }
+        form .signup-link a {
+            font-size: 16px; /* Reduced font size */
+            color: #4158d0;
+            text-decoration: none;
+        }
+        form .signup-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="title">Signup Form</div>
+        <form action="#">
+            <div class="field">
+                <input type="text" required>
+                <label>Full Name</label>
+            </div>
+            <div class="field">
+                <input type="email" required>
+                <label>Email Address</label>
+            </div>
+            <div class="field">
+                <input type="password" required>
+                <label>Password</label>
+            </div>
+            <div class="field">
+                <input type="password" required>
+                <label>Confirm Password</label>
+            </div>
+            <div class="field">
+                <input type="submit" value="Signup">
+            </div>
+            <div class="signup-link">
+                Already a member? <a href="login.html">Login instead</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
