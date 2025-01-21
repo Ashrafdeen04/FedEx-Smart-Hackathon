@@ -245,3 +245,10 @@ input[type="text"], input[type="number"], select {
         font-size: 14px;
     }
 }
+/* Parallax Effect */
+body {
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+}
+
