@@ -86,10 +86,6 @@ def fetch_route_data(start_coords, end_coords, vehicle_type):
         logging.error(f"Error fetching route data: {e}")
         return None
 
-
-
-
-
 # Helper: Calculate emissions
 def calculate_emissions(distance, vehicle_type, weather_data, aqi_data, traffic_data, load_factor):
     # Default emission factors (in grams of CO2 per kilometer)
