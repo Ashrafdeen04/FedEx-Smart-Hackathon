@@ -11,7 +11,7 @@
 </head>
 <body>
     <!-- Form Container -->
-    <div class="form-container">
+    <div class="form-container fade-in">
         <h3>Route Optimization</h3>
         <form id="route-form">
             <input type="text" id="start-address" placeholder="Start Address" required>
@@ -23,14 +23,16 @@
             </select>
             <button type="submit">Start Tracking</button>
         </form>
-        <div id="loading-bar"><div></div></div>
+        <div id="loading-bar">
+            <div class="progress"></div>
+        </div>
     </div>
 
     <!-- Map Container -->
-    <div id="map"></div>
+    <div id="map" class="fade-in"></div>
 
     <!-- Live Data Container -->
-    <div class="data-container" id="live-data">
+    <div class="data-container slide-in">
         <h4>Live Data</h4>
         <p id="current-location">Location: Loading...</p>
         <p id="current-weather">Weather: Loading...</p>
