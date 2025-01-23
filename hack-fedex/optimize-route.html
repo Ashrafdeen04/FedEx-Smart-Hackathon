@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Optimize Route - Google Maps</title>
+  <title>Route Optimizer</title>
   <style>
+    /* Basic styles for the layout */
     * {
       box-sizing: border-box;
       margin: 0;
@@ -14,110 +15,87 @@
 
     body {
       background: linear-gradient(
-        rgba(0, 0, 0, 0.5), 
-        rgba(0, 0, 0, 0.5)
+        rgba(0, 0, 0, 0.6),
+        rgba(0, 0, 0, 0.6)
       ), url('https://img.freepik.com/premium-photo/co2-carbon-emission-from-car-pollution_1240525-107447.jpg') no-repeat center center fixed;
       background-size: cover;
       color: #fff;
       display: flex;
       justify-content: center;
       align-items: center;
-      min-height: 180vh;
+      min-height: 150vh;
     }
 
     .container {
       max-width: 1000px;
-      width: 90%;
+      width: 50%;
       background: rgba(0, 0, 0, 0.6);
       backdrop-filter: blur(10px);
       border-radius: 15px;
       padding: 40px;
       box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
-      text-align: center;
+      
     }
 
     h2 {
-      font-size: 28px;
-      margin-bottom: 20px;
-      color: #f8f9fa;
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 28px; /* Larger font size */
+      color: #81d6f3;
     }
 
     label {
-      font-size: 16px;
-      color: #81d6f3;
-      margin-bottom: 8px;
       display: block;
-      text-align: left;
-    }
-
-    select, input {
-      width: 100%;
-      padding: 12px;
-      margin-bottom: 20px;
-      border: none;
-      border-radius: 6px;
-      font-size: 16px;
-      background: rgba(255, 255, 255, 0.2);
+      margin-bottom: 10px;
+      font-size: 18px; /* Slightly larger font */
       color: #d6dce0;
     }
 
-    select option, input::placeholder {
-      color: rgba(6, 8, 9, 0.7);
+    input, select {
+      width: 100%;
+      padding: 15px; /* Increased padding for inputs */
+      margin-bottom: 25px;
+      border-radius: 6px; /* Slightly larger border radius */
+      border: none;
+      font-size: 18px; /* Increased input font size */
     }
 
     button {
       width: 100%;
-      padding: 12px;
-      background: linear-gradient(to right, #ff416c, #ff4b2b);
-      color: white;
-      font-size: 18px;
-      font-weight: bold;
+      padding: 15px; /* Larger button padding */
       border: none;
       border-radius: 6px;
+      font-size: 18px; /* Increased font size for buttons */
+      font-weight: bold;
+      background: linear-gradient(to right, #ff416c, #ff4b2b);
+      color: white;
       cursor: pointer;
-      transition: transform 0.2s, background 0.3s;
+      transition: 0.3s;
     }
 
     button:hover {
-      transform: scale(1.05);
       background: linear-gradient(to right, #ff4b2b, #ff416c);
     }
 
     #map {
-      height: 500px;
-      width: 100%;
-      margin-top: 20px;
-      border-radius: 10px;
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      height: 600px; /* Increased map height */
+      margin-top: 30px; /* Increased margin for spacing */
+      border-radius: 12px;
     }
 
     #travel-details {
-      margin-top: 20px;
-      font-size: 18px;
-      color: hwb(214 29% 11%);
+      margin-top: 30px;
+      font-size: 18px; /* Slightly larger font size */
     }
 
-    #current-location-btn {
-      margin-top: -10px;
-      margin-bottom: 20px;
-      padding: 10px 12px;
-      background: #007bff;
-      color: #fff;
-      font-size: 14px;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-
-    #current-location-btn:hover {
-      background: #0056b3;
+    .waypoint-container {
+      margin-bottom: 25px;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h2>Optimize Your Route</h2>
+    <h2>Route Optimizer</h2>
     <form id="route-form">
       <div>
         <label for="vehicle-type">Vehicle Type</label>
@@ -144,8 +122,14 @@
       <div>
         <label for="origin">Origin</label>
         <input type="text" id="origin" placeholder="Enter origin address" required>
-        <button type="button" id="current-location-btn">Use Current Location</button>
       </div>
+
+      <div id="waypoints-container" class="waypoint-container">
+        <label for="waypoint">Waypoint</label>
+        <input type="text" id="waypoint" placeholder="Enter waypoint">
+      </div>
+
+      <button type="button" id="add-waypoint">+ Add Another Waypoint</button>
 
       <div>
         <label for="destination">Destination</label>
@@ -160,11 +144,11 @@
   </div>
 
   <script>
-    let map, directionsService, directionsRenderer, originAutocomplete, destinationAutocomplete;
+    let map, directionsService, directionsRenderer, originAutocomplete, destinationAutocomplete, waypointAutocomplete;
 
     function initMap() {
       map = new google.maps.Map(document.getElementById("map"), {
-        center: { lat: 20.5937, lng: 78.9629 },
+        center: { lat: 20.5937, lng: 78.9629 }, // Center map to India
         zoom: 5,
       });
 
@@ -172,22 +156,29 @@
       directionsRenderer = new google.maps.DirectionsRenderer();
       directionsRenderer.setMap(map);
 
+      // Add autocomplete to input fields
       originAutocomplete = new google.maps.places.Autocomplete(document.getElementById("origin"));
       destinationAutocomplete = new google.maps.places.Autocomplete(document.getElementById("destination"));
+      waypointAutocomplete = new google.maps.places.Autocomplete(document.getElementById("waypoint"));
     }
 
     function calculateRoute() {
       const origin = document.getElementById("origin").value;
       const destination = document.getElementById("destination").value;
+      const waypoint = document.getElementById("waypoint").value;
 
       if (!origin || !destination) {
         alert("Please enter both origin and destination.");
         return;
       }
 
+      const waypoints = waypoint ? [{ location: waypoint, stopover: true }] : [];
+
       const request = {
-        origin: origin,
-        destination: destination,
+        origin,
+        destination,
+        waypoints,
+        optimizeWaypoints: true,
         travelMode: google.maps.TravelMode.DRIVING,
       };
 
@@ -200,8 +191,8 @@
           const duration = leg.duration.text;
 
           document.getElementById("travel-details").innerHTML = `
-            Estimated Travel Time: <strong>${duration}</strong><br>
-            Distance: <strong>${distance} km</strong>
+            <strong>Estimated Travel Time:</strong> ${duration}<br>
+            <strong>Distance:</strong> ${distance.toFixed(2)} km
           `;
 
           calculateCarbonEmission(distance);
@@ -231,39 +222,24 @@
       const carbonEmission = distance * emissionFactor;
 
       document.getElementById("travel-details").innerHTML += `
-        <br>Estimated Carbon Emission: <strong>${carbonEmission.toFixed(2)} kg CO2</strong>
+        <br><strong>Estimated Carbon Emission:</strong> ${carbonEmission.toFixed(2)} kg CO2
       `;
     }
 
-    function useCurrentLocation() {
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition((position) => {
-          const lat = position.coords.latitude;
-          const lng = position.coords.longitude;
-          const latLng = new google.maps.LatLng(lat, lng);
-
-          const geocoder = new google.maps.Geocoder();
-          geocoder.geocode({ location: latLng }, (results, status) => {
-            if (status === google.maps.GeocoderStatus.OK) {
-              if (results[0]) {
-                document.getElementById("origin").value = results[0].formatted_address;
-              } else {
-                alert("No address found for your location.");
-              }
-            } else {
-              alert("Geocoder failed due to: " + status);
-            }
-          });
-        });
-      } else {
-        alert("Geolocation is not supported by your browser.");
-      }
-    }
-
-    document.getElementById("current-location-btn").addEventListener("click", useCurrentLocation);
     document.getElementById("route-form").addEventListener("submit", (e) => {
       e.preventDefault();
       calculateRoute();
+    });
+
+    document.getElementById("add-waypoint").addEventListener("click", () => {
+      const newWaypoint = document.createElement("input");
+      newWaypoint.type = "text";
+      newWaypoint.placeholder = "Enter another waypoint";
+      newWaypoint.classList.add("waypoint-input");
+      document.getElementById("waypoints-container").appendChild(newWaypoint);
+
+      // Add autocomplete to new waypoint field
+      new google.maps.places.Autocomplete(newWaypoint);
     });
   </script>
 
