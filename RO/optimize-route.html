@@ -106,17 +106,7 @@
       }
     }
 
-    #travel-details {
-      margin-top: 30px;
-      font-size: 18px;
-      color: #fff;
-      background: rgba(0, 0, 0, 0.6);
-      padding: 15px;
-      border-radius: 8px;
-      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
-    }
-
-    #traffic-monitor {
+    #travel-details, #traffic-monitor {
       margin-top: 30px;
       font-size: 18px;
       color: #fff;
@@ -163,6 +153,12 @@
       transform: scale(1.05);
       background: #ff416c;
       color: white;
+    }
+
+    .live-data {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
     }
   </style>
 </head>
@@ -222,9 +218,12 @@
       <button type="submit">Calculate Optimal Route</button>
     </form>
 
-    <div id="routes-container"></div>
-    <p id="travel-details"></p>
-    <div id="traffic-monitor"></div>
+    <div class="live-data">
+      <div id="routes-container"></div>
+      <div id="travel-details"></div>
+      <div id="traffic-monitor"></div>
+    </div>
+
     <div id="map"></div>
   </div>
 
@@ -266,7 +265,7 @@
       fetch(url)
         .then(response => response.json())
         .then(data => {
-          if (data.status === 'OK') {
+          if (data.routes) {
             const trafficTime = data.routes[0].summary.travelTimeInSeconds; // In seconds
             const trafficDistance = data.routes[0].summary.lengthInMeters / 1000; // In kilometers
             document.getElementById("traffic-monitor").innerHTML = `
@@ -318,7 +317,6 @@
       directionsService.route(request, (result, status) => {
         if (status === google.maps.DirectionsStatus.OK) {
           directionsRenderer.setDirections(result);
-          let routesDetails = '';
           const routesContainer = document.getElementById("routes-container");
           routesContainer.innerHTML = ''; // Clear previous routes
 
@@ -327,7 +325,6 @@
             const duration = route.legs.reduce((sum, leg) => sum + leg.duration.value, 0);
             const durationText = new Date(duration * 1000).toISOString().substr(11, 8);
 
-            // Create clickable route options
             const routeOption = document.createElement("div");
             routeOption.classList.add("route-option");
             routeOption.innerHTML = `
@@ -337,18 +334,16 @@
             `;
 
             routeOption.addEventListener("click", () => {
-              directionsRenderer.setRouteIndex(index); // Display the selected route
+              directionsRenderer.setRouteIndex(index);
             });
 
             routesContainer.appendChild(routeOption);
+
+            // Fetch live data for each route
+            getAirQualityData(origin);
+            getAirQualityData(destination);
+            getTrafficData(origin, destination);
           });
-
-          // Fetch air quality data for origin and destination
-          getAirQualityData(origin);
-          getAirQualityData(destination);
-
-          // Fetch traffic data for origin and destination
-          getTrafficData(origin, destination);
         } else {
           alert("Could not display the route. Please try again.");
         }
