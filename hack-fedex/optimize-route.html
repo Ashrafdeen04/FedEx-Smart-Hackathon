@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Enhanced Route Optimizer</title>
+  <title>Route Optimizer</title>
   <style>
-    /* Global Styling */
+    /* Basic styles for the layout */
     * {
       box-sizing: border-box;
       margin: 0;
@@ -27,102 +27,77 @@
     }
 
     .container {
-      max-width: 1200px;
-      width: 90%;
-      display: flex;
-      background: rgba(0, 0, 0, 0.8);
+      max-width: 1000px;
+      width: 50%;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(10px);
       border-radius: 15px;
-      overflow: hidden;
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
-    }
-
-    .form-section {
-      flex: 2;
       padding: 40px;
-    }
-
-    .sidebar {
-      flex: 1;
-      background: rgba(255, 255, 255, 0.1);
-      padding: 20px;
-      color: #fff;
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+      
     }
 
     h2 {
       text-align: center;
       margin-bottom: 30px;
-      font-size: 28px;
+      font-size: 28px; /* Larger font size */
       color: #9aeff2;
     }
 
     label {
       display: block;
       margin-bottom: 10px;
-      font-size: 18px;
+      font-size: 18px; /* Slightly larger font */
       color: #d6dce0;
     }
 
     input, select {
       width: 100%;
-      padding: 10px;
-      margin-bottom: 15px;
-      border-radius: 6px;
+      padding: 15px; /* Increased padding for inputs */
+      margin-bottom: 25px;
+      border-radius: 6px; /* Slightly larger border radius */
       border: none;
-      font-size: 16px;
-      background: #fff;
-      color: #000;
+      font-size: 18px; /* Increased input font size */
     }
 
     button {
       width: 100%;
-      padding: 15px;
+      padding: 15px; /* Larger button padding */
       border: none;
       border-radius: 6px;
-      font-size: 18px;
+      font-size: 18px; /* Increased font size for buttons */
       font-weight: bold;
       background: linear-gradient(to right, #ff416c, #ff4b2b);
       color: white;
       cursor: pointer;
-      transition: transform 0.2s, background 0.3s;
+      transition: 0.3s;
     }
 
     button:hover {
-      transform: scale(1.05);
       background: linear-gradient(to right, #ff4b2b, #ff416c);
     }
 
-    .sidebar h3 {
-      font-size: 20px;
-      margin-bottom: 15px;
-      color: #9aeff2;
-    }
-
-    .data-block {
-      background: rgba(255, 255, 255, 0.2);
-      padding: 15px;
-      border-radius: 8px;
-      margin-bottom: 20px;
-    }
-
-    .data-block h4 {
-      font-size: 18px;
-      margin-bottom: 10px;
-      color: #ffcc00;
-    }
-
     #map {
-      height: 400px;
-      margin-top: 20px;
-      border-radius: 10px;
+      height: 600px; /* Increased map height */
+      margin-top: 30px; /* Increased margin for spacing */
+      border-radius: 12px;
+    }
+
+    #travel-details {
+      margin-top: 30px;
+      font-size: 18px; /* Slightly larger font size */
+    }
+
+    .waypoint-container {
+      margin-bottom: 25px;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <!-- Form Section -->
-    <div class="form-section">
-      <h2>Enhanced Route Optimizer</h2>
-      <form id="route-form">
+    <h2>Route Optimizer</h2>
+    <form id="route-form">
+      <div>
         <label for="vehicle-type">Vehicle Type</label>
         <select id="vehicle-type" required>
           <option value="">Select Vehicle Type</option>
@@ -130,166 +105,147 @@
           <option value="bike">Bike</option>
           <option value="bus">Bus</option>
           <option value="truck">Truck</option>
+          <option value="auto">Auto</option>
         </select>
+      </div>
 
+      <div>
+        <label for="fuel-type">Fuel Type</label>
+        <select id="fuel-type" required>
+          <option value="">Select Fuel Type</option>
+          <option value="petrol">Petrol</option>
+          <option value="diesel">Diesel</option>
+          <option value="electric">Electric</option>
+        </select>
+      </div>
+
+      <div>
         <label for="origin">Origin</label>
-        <div style="display: flex; gap: 10px;">
-          <input type="text" id="origin" placeholder="Enter origin address" required>
-          <button type="button" class="voice-button" onclick="startVoiceInput('origin')">🎤</button>
-        </div>
+        <input type="text" id="origin" placeholder="Enter origin address" required>
+      </div>
 
+      <div id="waypoints-container" class="waypoint-container">
+        <label for="waypoint">Waypoint</label>
+        <input type="text" id="waypoint" placeholder="Enter waypoint(optional)">
+      </div>
+
+      <button type="button" id="add-waypoint">+ Add Another Waypoint</button>
+
+      <div>
         <label for="destination">Destination</label>
-        <div style="display: flex; gap: 10px;">
-          <input type="text" id="destination" placeholder="Enter destination address" required>
-          <button type="button" class="voice-button" onclick="startVoiceInput('destination')">🎤</button>
-        </div>
-
-        <button type="submit">Calculate Optimal Routes</button>
-      </form>
-      <div id="routes-container"></div>
-      <div id="map"></div>
-    </div>
-
-    <!-- Sidebar Section -->
-    <div class="sidebar">
-      <h3>Real-Time Data</h3>
-      <div class="data-block" id="traffic-data">
-        <h4>Traffic Data</h4>
-        <p>Loading...</p>
+        <input type="text" id="destination" placeholder="Enter destination address" required>
       </div>
-      <div class="data-block" id="aqi-data">
-        <h4>Air Quality Data</h4>
-        <p>Loading...</p>
-      </div>
-    </div>
+
+      <button type="submit">Calculate Optimal Route</button>
+    </form>
+
+    <p id="travel-details"></p>
+    <div id="map"></div>
   </div>
 
   <script>
-    let map, directionsService, directionsRenderer;
+    let map, directionsService, directionsRenderer, originAutocomplete, destinationAutocomplete, waypointAutocomplete;
 
-    const AQICN_API_KEY = 'd4f26403a3da5dab3a04d309df4612da5dfdfcfd';
-    const TOM_TOM_API_KEY = 'FURUmeXJFsVAxfbjrBrCRBXrEsBFbRlx';
-
-    // Initialize Google Maps
     function initMap() {
       map = new google.maps.Map(document.getElementById("map"), {
-        center: { lat: 20.5937, lng: 78.9629 },
+        center: { lat: 20.5937, lng: 78.9629 }, // Center map to India
         zoom: 5,
       });
 
       directionsService = new google.maps.DirectionsService();
-      directionsRenderer = new google.maps.DirectionsRenderer({ map });
+      directionsRenderer = new google.maps.DirectionsRenderer();
+      directionsRenderer.setMap(map);
+
+      // Add autocomplete to input fields
+      originAutocomplete = new google.maps.places.Autocomplete(document.getElementById("origin"));
+      destinationAutocomplete = new google.maps.places.Autocomplete(document.getElementById("destination"));
+      waypointAutocomplete = new google.maps.places.Autocomplete(document.getElementById("waypoint"));
     }
 
-    function startVoiceInput(inputId) {
-      const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-      recognition.lang = "en-US";
+    function calculateRoute() {
+      const origin = document.getElementById("origin").value;
+      const destination = document.getElementById("destination").value;
+      const waypoint = document.getElementById("waypoint").value;
 
-      recognition.onresult = (event) => {
-        const voiceInput = event.results[0][0].transcript;
-        document.getElementById(inputId).value = voiceInput;
-      };
-
-      recognition.start();
-    }
-
-    function fetchTrafficData(origin, destination) {
-      const url = `https://api.tomtom.com/routing/1/calculateRoute/${origin}:${destination}/json?key=${TOM_TOM_API_KEY}&traffic=true`;
-      fetch(url)
-        .then(response => response.json())
-        .then(data => {
-          const trafficInfo = data.routes?.[0]?.summary;
-          if (trafficInfo) {
-            document.getElementById('traffic-data').innerHTML = `
-              <h4>Traffic Data</h4>
-              <p><strong>Distance:</strong> ${(trafficInfo.lengthInMeters / 1000).toFixed(2)} km</p>
-              <p><strong>Travel Time:</strong> ${(trafficInfo.travelTimeInSeconds / 60).toFixed(2)} mins</p>
-            `;
-          } else {
-            document.getElementById('traffic-data').innerHTML = `<p>No traffic data available.</p>`;
-          }
-        })
-        .catch(error => console.error('Error fetching traffic data:', error));
-    }
-
-    function fetchAirQualityData(location) {
-      const url = `https://api.waqi.info/feed/${location}/?token=${AQICN_API_KEY}`;
-      fetch(url)
-        .then(response => response.json())
-        .then(data => {
-          const aqi = data.data.aqi;
-          const pollutant = data.data.dominentpol;
-          document.getElementById('aqi-data').innerHTML = `
-            <h4>Air Quality Data</h4>
-            <p><strong>AQI:</strong> ${aqi}</p>
-            <p><strong>Dominant Pollutant:</strong> ${pollutant}</p>
-          `;
-        })
-        .catch(error => console.error('Error fetching air quality data:', error));
-    }
-
-    function calculateRoute(event) {
-      event.preventDefault();
-      const origin = document.getElementById('origin').value;
-      const destination = document.getElementById('destination').value;
-      const vehicleType = document.getElementById('vehicle-type').value;
-
-      if (!origin || !destination || !vehicleType) {
-        alert('Please fill all the fields!');
+      if (!origin || !destination) {
+        alert("Please enter both origin and destination.");
         return;
       }
 
-      let travelMode = google.maps.TravelMode.DRIVING;
-      if (vehicleType === 'bike') travelMode = google.maps.TravelMode.BICYCLING;
+      const waypoints = waypoint ? [{ location: waypoint, stopover: true }] : [];
 
       const request = {
         origin,
         destination,
-        travelMode,
-        provideRouteAlternatives: true,
+        waypoints,
+        optimizeWaypoints: true,
+        travelMode: google.maps.TravelMode.DRIVING,
       };
 
       directionsService.route(request, (result, status) => {
         if (status === google.maps.DirectionsStatus.OK) {
           directionsRenderer.setDirections(result);
-          const routesContainer = document.getElementById('routes-container');
-          routesContainer.innerHTML = '';
 
-          result.routes.forEach((route, index) => {
-            const distance = route.legs.reduce((sum, leg) => sum + leg.distance.value, 0) / 1000;
-            const duration = route.legs.reduce((sum, leg) => sum + leg.duration.value, 0) / 60;
+          const leg = result.routes[0].legs[0];
+          const distance = leg.distance.value / 1000; // Convert to kilometers
+          const duration = leg.duration.text;
 
-            const routeOption = document.createElement('div');
-            routeOption.className = 'data-block';
-            routeOption.innerHTML = `
-              <h4>Route ${index + 1}</h4>
-              <p><strong>Distance:</strong> ${distance.toFixed(2)} km</p>
-              <p><strong>Time:</strong> ${duration.toFixed(2)} mins</p>
-            `;
-            routeOption.onclick = () => directionsRenderer.setRouteIndex(index);
+          document.getElementById("travel-details").innerHTML = `
+            <strong>Estimated Travel Time:</strong> ${duration}<br>
+            <strong>Distance:</strong> ${distance.toFixed(2)} km
+          `;
 
-            routesContainer.appendChild(routeOption);
-          });
-
-          fetchTrafficData(origin, destination);
-          fetchAirQualityData(origin);
+          calculateCarbonEmission(distance);
         } else {
-          alert('Could not calculate routes. Please try again.');
+          alert("Could not display route. Please check the addresses and try again.");
         }
       });
     }
 
-    document.getElementById('route-form').addEventListener('submit', calculateRoute);
+    function calculateCarbonEmission(distance) {
+      const vehicleType = document.getElementById("vehicle-type").value;
+      const fuelType = document.getElementById("fuel-type").value;
 
-    function loadGoogleMapsAPI() {
-      const script = document.createElement('script');
-      script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyA-S3DIud4-b9h9dVs4hnlVBGMfr_TtHx0&libraries=places&callback=initMap`;
-      script.async = true;
-      script.defer = true;
-      document.body.appendChild(script);
+      if (!vehicleType || !fuelType) {
+        alert("Please select both vehicle type and fuel type.");
+        return;
+      }
+
+      let emissionFactor = 0;
+
+      if (fuelType === "petrol") {
+        emissionFactor = vehicleType === "car" ? 0.24 : 0.12;
+      } else if (fuelType === "diesel") {
+        emissionFactor = vehicleType === "car" ? 0.27 : 0.15;
+      }
+
+      const carbonEmission = distance * emissionFactor;
+
+      document.getElementById("travel-details").innerHTML += `
+        <br><strong>Estimated Carbon Emission:</strong> ${carbonEmission.toFixed(2)} kg CO2
+      `;
     }
 
-    loadGoogleMapsAPI();
+    document.getElementById("route-form").addEventListener("submit", (e) => {
+      e.preventDefault();
+      calculateRoute();
+    });
+
+    document.getElementById("add-waypoint").addEventListener("click", () => {
+      const newWaypoint = document.createElement("input");
+      newWaypoint.type = "text";
+      newWaypoint.placeholder = "Enter another waypoint";
+      newWaypoint.classList.add("waypoint-input");
+      document.getElementById("waypoints-container").appendChild(newWaypoint);
+
+      // Add autocomplete to new waypoint field
+      new google.maps.places.Autocomplete(newWaypoint);
+    });
   </script>
+
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-S3DIud4-b9h9dVs4hnlVBGMfr_TtHx0&libraries=places&callback=initMap"
+    async
+  ></script>
 </body>
 </html>
