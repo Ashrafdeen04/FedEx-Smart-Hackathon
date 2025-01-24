@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FedEx Dynamic Routing System</title>
-  
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -12,18 +11,19 @@
   <header>
     <nav class="navbar">
       <!-- Logo -->
-       <div class="logo">
+      <div class="logo">
         <span class="fed">Fed</span><span class="ex">Ex</span> Dynamic Routing System
       </div>
-      
       <!-- Navigation Links -->
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
-        <li><a href="optimize-route.html">Optimize Route</a></li>
+        <li><a href="about-us.html">About Us</a></li>
+        <li><a href="officials.html">Meet our Officials</a></li>
+        <li><a href="services.html">Our Services</a></li>
+        <li><a href="help.html">Help</a></li>
       </ul>
-      
       <!-- Login Button -->
-      <a href="index.html" class="login-btn">Login/Signup</a>
+      <a href="login.html" class="login-btn">Login</a>
     </nav>
   </header>
 
@@ -35,15 +35,15 @@
         <h1><span class="fed">Fed</span><span class="ex">Ex</span> Dynamic Routing System</h1>
         <!-- Features Section -->
         <div class="features">
-          <div class="feature">
+          <div class="feature" id="optimize-route" style="cursor: pointer;" onclick="window.location.href='optimize-route.html'">
             <h2>Optimize Routes</h2>
             <p>Calculate the most efficient routes using real-time traffic and weather data.</p>
           </div>
-          <div class="feature">
+          <div class="feature" id="emissions-dashboard" style="cursor: pointer;" onclick="window.location.href='dashboard.html'">
             <h2>Emissions Dashboard</h2>
             <p>Monitor and analyze vehicle emissions to reduce environmental impact.</p>
           </div>
-          <div class="feature">
+          <div class="feature" id="real-time-tracking" style="cursor: pointer;" onclick="window.location.href='real-time-tracking.html'">
             <h2>Real-time Tracking</h2>
             <p>Track vehicles and deliveries in real-time for improved customer satisfaction.</p>
           </div>
@@ -54,14 +54,13 @@
 
   <!-- Footer -->
   <footer id="footer"></footer>
-<script>
-  document.getElementById("footer").innerHTML = `
-    <div class="container">
-      <p>&copy; 2023 FedEx Dynamic Routing System. All rights reserved.</p>
-    </div>
-  `;
-</script>
-
+  <script>
+    document.getElementById("footer").innerHTML = `
+      <div class="container">
+        <p>&copy; 2023 FedEx Dynamic Routing System. All rights reserved.</p>
+      </div>
+    `;
+  </script>
 
   <script src="js/header.js"></script>
 </body>

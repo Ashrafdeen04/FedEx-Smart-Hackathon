@@ -5,26 +5,10 @@ body, html {
   font-family: Arial, sans-serif;
   height: 100%;
 }
-/* Logo styling */
-.logo {
-  font-size: 1.8rem;
-  font-weight: bold;
-  text-decoration: none; /* Prevents underlining */
-  cursor: default; /* Indicates it's not a clickable element */
-}
-
-.logo .fed {
-  color: white; /* Fed in white */
-}
-
-.logo .ex {
-  color: #ff6600; /* Ex in orange */
-}
-
 
 /* Header styles */
 header {
-  background-color: #6b46c1;
+  background-color: #47827d;
   color: white;
   padding: 15px 20px;
 }
@@ -40,18 +24,17 @@ header .navbar {
   margin: 0;
   padding: 0;
   display: flex;
-  gap: 20px;
-  margin-left: 80px;
-   /* Space between nav items */
+  gap: 20px; /* Space between nav items */
 }
 
-
+.nav-links li {
+  margin: 0;
+}
 
 .nav-links li a {
   color: white;
   text-decoration: none;
   font-weight: bold;
-  font-size: 1.2rem;
   transition: color 0.3s ease;
 }
 
@@ -61,7 +44,7 @@ header .navbar {
 
 .login-btn {
   background-color: white;
-  color: #6b46c1;
+  color: #47827d;
   border: none;
   border-radius: 5px;
   padding: 8px 12px;
@@ -76,7 +59,7 @@ header .navbar {
 
 /* Homepage styles */
 .homepage {
-  background: url('https://www.allrideapps.com/wp-content/uploads/2024/08/04.jpg') no-repeat center center/cover;
+  background: url('https://ecomdelivery.in/wp-content/uploads/2024/05/Unlock-Success-with-the-Best-Logistics-Services-in-India-Ecom-Delivery-scaled.jpg') no-repeat center center/cover;
   height: calc(100vh - 80px); /* Full height minus header height */
   display: flex;
   justify-content: center;
@@ -90,8 +73,7 @@ header .navbar {
   top: 0;
   left: 0;
   right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.6); /* Transparency effect */
+  bottom: 0; /* Transparency effect */
   z-index: 1;
 }
 
@@ -103,19 +85,16 @@ header .navbar {
   padding: 20px;
   max-width: 900px;
 }
-/* Styling for FedEx colors in the content */
-.fed {
-  color: #ffffff; /* Fed in white */
+.content .fed{
+  color: blue;
 }
-
-.ex {
-  color: #ff6600; /* Ex in orange */
+.content .ex{
+  color: #ff6600;
 }
-
-
 .content h1 {
   font-size: 2.5rem;
   margin-bottom: 20px;
+  color: rgb(247, 244, 244);
 }
 
 .features {
@@ -158,8 +137,14 @@ header .navbar {
   text-decoration: none; /* Prevents underlining */
   cursor: default; /* Indicates it's not a clickable element */
 }
+.logo .fed{
+  color: blue;
+}
+.logo .ex{
+  color: #ff6600;
+}
 footer {
-  background-color: #6a1b9a;
+  background-color: #47827d;
   color: white;
   text-align: center;
   padding: 10px 0;
@@ -168,4 +153,11 @@ footer {
   width: 100%;
 }
 
+#emissions-dashboard {
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
 
+#emissions-dashboard:hover {
+  background-color: #47827d; /* Add a hover effect */
+}
