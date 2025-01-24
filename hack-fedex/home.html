@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FedEx Dynamic Routing System</title>
+  
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <!-- Header Section -->
+  <header>
+    <nav class="navbar">
+      <!-- Logo -->
+       <div class="logo">
+        <span class="fed">Fed</span><span class="ex">Ex</span> Dynamic Routing System
+      </div>
+      
+      <!-- Navigation Links -->
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="optimize-route.html">Optimize Route</a></li>
+      </ul>
+      
+      <!-- Login Button -->
+      <a href="index.html" class="login-btn">Login/Signup</a>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <div class="homepage">
+      <div class="content">
+        <!-- Page Title -->
+        <h1><span class="fed">Fed</span><span class="ex">Ex</span> Dynamic Routing System</h1>
+        <!-- Features Section -->
+        <div class="features">
+          <div class="feature">
+            <h2>Optimize Routes</h2>
+            <p>Calculate the most efficient routes using real-time traffic and weather data.</p>
+          </div>
+          <div class="feature">
+            <h2>Emissions Dashboard</h2>
+            <p>Monitor and analyze vehicle emissions to reduce environmental impact.</p>
+          </div>
+          <div class="feature">
+            <h2>Real-time Tracking</h2>
+            <p>Track vehicles and deliveries in real-time for improved customer satisfaction.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer id="footer"></footer>
+<script>
+  document.getElementById("footer").innerHTML = `
+    <div class="container">
+      <p>&copy; 2023 FedEx Dynamic Routing System. All rights reserved.</p>
+    </div>
+  `;
+</script>
+
+
+  <script src="js/header.js"></script>
+</body>
+</html>
