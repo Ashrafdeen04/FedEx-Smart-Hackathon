@@ -4,135 +4,216 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Signup - EcoRoute</title>
+    
     <style>
-        @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+        @import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap');
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Roboto', sans-serif;
         }
-        html, body {
-            display: grid;
-            height: 100%;
-            width: 100%;
-            place-items: center;
-            background: #c3e8ec;
-        }
+
+        body {
+    height: 100vh;
+    background: url('https://designtemplate.tech/images/Digital%20World%20Map%20Interactive%20Background%20Stock%20Video%20for%20Global%20News-HD.webp') no-repeat center center/cover;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    overflow: hidden;
+}
+
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.619); /* White overlay with mild transparency */
+    z-index: -1; /* Ensures this layer is behind all content */
+}
+
+
         .wrapper {
-            width: 500px; /* Reduced the width */
-            padding: 30px; /* Adjusted padding */
-            background: #fff;
+            width: 100%;
+            max-width: 420px;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 40px;
             border-radius: 15px;
-            box-shadow: 0px 15px 25px rgba(0,0,0,0.2);
-            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 1.5s ease;
         }
-        .wrapper .title {
-            font-size: 24px; /* Reduced font size */
+
+        .title {
+            font-size: 26px;
             font-weight: 700;
             text-align: center;
-            line-height: 100px; /* Adjusted line height */
-            color: #fff;
-            user-select: none;
-            border-radius: 15px 15px 0 0;
-            background: linear-gradient(-135deg, #c850c0, #4158d0);
-        }
-        .wrapper form {
-            padding: 20px 40px 40px 40px; /* Reduced padding */
-        }
-        .wrapper form .field {
-            height: 60px; /* Reduced field height */
-            margin-top: 20px; /* Reduced margin */
+            color: #ffffff;
+            margin-bottom: 30px;
+            text-transform: uppercase;
             position: relative;
         }
-        .wrapper form .field input {
-            height: 100%;
-            width: 100%;
-            font-size: 18px; /* Reduced font size */
-            padding-left: 20px; /* Adjusted padding */
-            border: 2px solid lightgrey; /* Adjusted border width */
-            border-radius: 30px; /* Reduced border radius */
-            transition: all 0.3s ease;
+
+        .title::after {
+            content: '';
+            width: 50px;
+            height: 3px;
+            background: #64cbc1;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: -10px;
         }
-        .wrapper form .field input:focus,
-        form .field input:valid {
-            border-color: #4158d0;
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
-        .wrapper form .field label {
+
+        .field {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .field input {
+            height: 50px;
+            padding: 0 15px;
+            font-size: 16px;
+            color: #ffffff;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            background: transparent;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .field input:focus {
+            border-color: #64cbc1;
+            box-shadow: 0 0 8px rgba(100, 203, 193, 0.3);
+        }
+
+        .field label {
             position: absolute;
             top: 50%;
-            left: 20px; /* Adjusted label padding */
-            font-size: 16px; /* Reduced font size */
-            color: #999999;
+            left: 15px;
+            transform: translateY(-50%);
+            font-size: 14px;
+            color: #ffffff;
             pointer-events: none;
-            transform: translateY(-50%);
-            transition: all 0.3s ease;
+            transition: all 0.3s;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 0 5px;
         }
-        form .field input:focus ~ label,
-        form .field input:valid ~ label {
-            top: 0%;
-            font-size: 14px; /* Reduced label font size */
-            color: #4158d0;
-            background: #fff;
-            transform: translateY(-50%);
+
+        .field input:focus ~ label,
+        .field input:not(:placeholder-shown) ~ label {
+            top: -10px;
+            left: 10px;
+            font-size: 12px;
+            color: #64cbc1;
         }
-        form .field input[type="submit"] {
-            height: 60px; /* Reduced button height */
-            font-size: 20px; /* Reduced font size */
+
+        .field input[type="submit"] {
+            background: linear-gradient(135deg, #64cbc1, #4158d0);
+            color: white;
             font-weight: bold;
-            color: #fff;
-            border: none;
             cursor: pointer;
-            background: linear-gradient(-135deg, #c850c0, #4158d0);
-            transition: all 0.3s ease;
-            border-radius: 30px; /* Reduced border radius */
+            border: none;
+            border-radius: 8px;
+            height: 50px;
+            transition: background 0.3s;
         }
-        form .field input[type="submit"]:hover {
-            opacity: 0.9;
+
+        .field input[type="submit"]:hover {
+            background: linear-gradient(135deg, #87c5ee, #3456c1);
         }
-        form .signup-link {
-            font-size: 16px; /* Reduced font size */
-            color: #262626;
-            margin-top: 20px; /* Adjusted margin */
+
+        .signup-link {
             text-align: center;
+            font-size: 14px;
+            color: #ffffff;
         }
-        form .signup-link a {
-            font-size: 16px; /* Reduced font size */
-            color: #4158d0;
+
+        .signup-link a {
+            color: #64cbc1;
             text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
         }
-        form .signup-link a:hover {
-            text-decoration: underline;
+
+        .signup-link a:hover {
+            color: #87c5ee;
+        }
+
+        .social-login {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .social-login a {
+            margin: 0 10px;
+            font-size: 24px;
+            color: #ffffff;
+            transition: color 0.3s;
+        }
+
+        .social-login a:hover {
+            color: #87c5ee;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
 <body>
     <div class="wrapper">
-        <div class="title">Signup Form</div>
+        <div class="title">Signup for EcoRoute</div>
         <form action="#">
             <div class="field">
-                <input type="text" required>
+                <input type="text" placeholder=" " required>
                 <label>Full Name</label>
             </div>
             <div class="field">
-                <input type="email" required>
+                <input type="email" placeholder=" " required>
                 <label>Email Address</label>
             </div>
             <div class="field">
-                <input type="password" required>
+                <input type="password" placeholder=" " required>
                 <label>Password</label>
             </div>
             <div class="field">
-                <input type="password" required>
+                <input type="password" placeholder=" " required>
                 <label>Confirm Password</label>
             </div>
             <div class="field">
                 <input type="submit" value="Signup">
             </div>
             <div class="signup-link">
-                Already a member? <a href="login.html">Login instead</a>
+                Already have an account? <a href="login.html">Login here</a>
             </div>
         </form>
+        <div class="social-login">
+            <a href="#"><i class="fab fa-google"></i></a>
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+        </div>
+        
     </div>
 </body>
 </html>
