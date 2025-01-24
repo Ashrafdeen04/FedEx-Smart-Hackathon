@@ -1,0 +1,172 @@
+/* General styles */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    height: 100%;
+  }
+  /* Logo styling */
+  .logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-decoration: none; /* Prevents underlining */
+    cursor: default; /* Indicates it's not a clickable element */
+  }
+  
+  .logo .fed {
+    color: white; /* Fed in white */
+  }
+  
+  .logo .ex {
+    color: #ff6600; /* Ex in orange */
+  }
+  
+  
+  /* Header styles */
+  header {
+    background-color: #6b46c1;
+    color: white;
+    padding: 15px 20px;
+  }
+  
+  header .navbar {
+    display: flex;
+    justify-content: space-between; /* Space between logo and nav items */
+    align-items: center;
+  }
+  
+  .nav-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+    margin-left: 80px;
+     /* Space between nav items */
+  }
+  
+  
+  
+  .nav-links li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+  }
+  
+  .nav-links li a:hover {
+    color: #ddd;
+  }
+  
+  .login-btn {
+    background-color: white;
+    color: #6b46c1;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+  
+  .login-btn:hover {
+    background-color: #f1f1f1;
+  }
+  
+  /* Homepage styles */
+  .homepage {
+    background: url('https://www.allrideapps.com/wp-content/uploads/2024/08/04.jpg') no-repeat center center/cover;
+    height: calc(100vh - 80px); /* Full height minus header height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+  
+  .homepage::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6); /* Transparency effect */
+    z-index: 1;
+  }
+  
+  .content {
+    color: white;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    padding: 20px;
+    max-width: 900px;
+  }
+  /* Styling for FedEx colors in the content */
+  .fed {
+    color: #ffffff; /* Fed in white */
+  }
+  
+  .ex {
+    color: #ff6600; /* Ex in orange */
+  }
+  
+  
+  .content h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+  }
+  
+  .features {
+    display: flex;
+    flex-direction: column; /* Stack features vertically */
+    gap: 20px; /* Add space between features */
+  }
+  
+  .feature {
+    background-color: rgba(0, 0, 0, 0.8); /* Dark background for readability */
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  .feature h2 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+  }
+  
+  .feature p {
+    font-size: 1rem;
+    margin: 0;
+  }
+  
+  /* Responsive Design */
+  @media (min-width: 768px) {
+    .features {
+      flex-direction: row; /* Arrange features side by side on larger screens */
+      justify-content: space-around;
+    }
+  
+    .feature {
+      max-width: 250px;
+    }
+  }
+  .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    text-decoration: none; /* Prevents underlining */
+    cursor: default; /* Indicates it's not a clickable element */
+  }
+  footer {
+    background-color: #6a1b9a;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+  
+  
+  
