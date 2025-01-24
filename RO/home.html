@@ -4,64 +4,260 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FedEx Dynamic Routing System</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link rel="stylesheet" href="css/styles.css">
+  <style>
+    /* General styles */
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    /* Header styles */
+    header {
+      background-color: #6b46c1;
+      color: white;
+      padding: 15px 20px;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+
+    .logo .fed {
+      color: white;
+    }
+
+    .logo .ex {
+      color: #ff6600;
+    }
+
+    .nav-links {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-links li a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1rem;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links li a:hover {
+      color: #ddd;
+    }
+
+    .login-btn {
+      background-color: white;
+      color: #6b46c1;
+      border: none;
+      border-radius: 5px;
+      padding: 8px 12px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+
+    .login-btn:hover {
+      background-color: #f1f1f1;
+    }
+
+    /* Section styles */
+    section {
+      padding: 80px 20px;
+    }
+
+    .homepage {
+      background: url('https://www.allrideapps.com/wp-content/uploads/2024/08/04.jpg') no-repeat center center/cover;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+      position: relative;
+    }
+
+    /* Black transparent overlay on homepage */
+    .homepage::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: 1;
+    }
+
+    .homepage div {
+      z-index: 2;
+    }
+
+    .about, .officials, .services, .help {
+      background-color: #eef3f3;
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    .logo.fed{
+      color:#f1f1f1;
+    }
+    .logo.ex{
+      color: orange;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 1rem;
+      margin: 0 auto;
+      max-width: 800px;
+      line-height: 1.6;
+    }
+
+    footer {
+      background-color: #6a1b9a;
+      color: white;
+      text-align: center;
+      padding: 10px 0;
+    }
+
+    /* Feature box styles */
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .feature {
+      background-color: rgba(0, 0, 0, 0.8);
+      color: white;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 300px;
+      text-align: center;
+    }
+
+    .feature:hover {
+      background-color: rgba(0, 0, 0.6);
+      transform: translateY(-5px);
+      transition: all 0.3s ease;
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+      .features {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+
+    /* Adjusting position of the login button */
+    .login-btn {
+      position: absolute;
+      left: 1300px;
+      top: 10px; 
+    }
+  </style>
 </head>
 <body>
-  <!-- Header Section -->
+
+  <!-- Header -->
   <header>
     <nav class="navbar">
-      <!-- Logo -->
       <div class="logo">
         <span class="fed">Fed</span><span class="ex">Ex</span> Dynamic Routing System
       </div>
-      <!-- Navigation Links -->
       <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about-us.html">About Us</a></li>
-        <li><a href="officials.html">Meet our Officials</a></li>
-        <li><a href="services.html">Our Services</a></li>
-        <li><a href="help.html">Help</a></li>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#officials">Meet Our Officials</a></li>
+        <li><a href="#services">Our Services</a></li>
+        <li><a href="#help">Help</a></li>
       </ul>
-      <!-- Login Button -->
-      <a href="login.html" class="login-btn">Login</a>
+      <a href="index.html"><button class="login-btn">Login/Signup</button></a>
     </nav>
   </header>
 
-  <!-- Main Content -->
-  <main>
-    <div class="homepage">
-      <div class="content">
-        <!-- Page Title -->
-        <h1><span class="fed">Fed</span><span class="ex">Ex</span> Dynamic Routing System</h1>
-        <!-- Features Section -->
-        <div class="features">
-          <div class="feature" id="optimize-route" style="cursor: pointer;" onclick="window.location.href='optimize-route.html'">
-            <h2>Optimize Routes</h2>
-            <p>Calculate the most efficient routes using real-time traffic and weather data.</p>
-          </div>
-          <div class="feature" id="emissions-dashboard" style="cursor: pointer;" onclick="window.location.href='dashboard.html'">
-            <h2>Emissions Dashboard</h2>
-            <p>Monitor and analyze vehicle emissions to reduce environmental impact.</p>
-          </div>
-          <div class="feature" id="real-time-tracking" style="cursor: pointer;" onclick="window.location.href='real-time-tracking.html'">
-            <h2>Real-time Tracking</h2>
-            <p>Track vehicles and deliveries in real-time for improved customer satisfaction.</p>
-          </div>
+  <!-- Homepage Section -->
+  <section class="homepage" id="home">
+    <div>
+      <h1><span class="fed">Fed</span><span class="ex">Ex</span> Dynamic Routing System</h1>
+      <p>Optimizing routes and reducing emissions for a sustainable future.</p>
+      <div class="features">
+        <div class="feature">
+          <h2>Optimize Routes</h2>
+          <p>Calculate the most efficient routes using real-time data.</p>
+        </div>
+        <div class="feature">
+          <h2>Emissions Dashboard</h2>
+          <p>Monitor and reduce your environmental impact.</p>
+        </div>
+        <div class="feature">
+          <h2>Real-Time Tracking</h2>
+          <p>Track deliveries and improve customer satisfaction.</p>
         </div>
       </div>
     </div>
-  </main>
+  </section>
+
+  <!-- About Us Section -->
+  <section id="about" class="about">
+    <h2>About Us</h2>
+    <p>At FedEx, we are committed to delivering innovative solutions for logistics and transportation. Our dynamic routing system combines real-time traffic, weather, and vehicle data to optimize delivery routes, enhance efficiency, and reduce carbon emissions, promoting sustainability worldwide.</p>
+  </section>
+
+  <!-- Meet Our Officials Section -->
+  <section id="officials" class="officials">
+    <h2>Meet Our Officials</h2>
+    <p>Our team of experts brings decades of experience in logistics and technology. Together, we drive innovation and ensure the highest standards of efficiency and service.</p>
+  </section>
+
+  <!-- Our Services Section -->
+  <section id="services" class="services">
+    <h2>Our Services</h2>
+    <p>From route optimization to emissions tracking and real-time delivery updates, we provide a comprehensive suite of services designed to meet your logistics needs.</p>
+  </section>
+
+  <!-- Help Section -->
+  <section id="help" class="help">
+    <h2>Help</h2>
+    <p>Have questions? Need assistance? Contact our support team, and we'll be happy to help you with all your logistics queries.</p>
+  </section>
 
   <!-- Footer -->
-  <footer id="footer"></footer>
-  <script>
-    document.getElementById("footer").innerHTML = `
-      <div class="container">
-        <p>&copy; 2023 FedEx Dynamic Routing System. All rights reserved.</p>
-      </div>
-    `;
-  </script>
+  <footer>
+    &copy; 2023 FedEx Dynamic Routing System. All rights reserved.
+  </footer>
 
-  <script src="js/header.js"></script>
 </body>
 </html>
