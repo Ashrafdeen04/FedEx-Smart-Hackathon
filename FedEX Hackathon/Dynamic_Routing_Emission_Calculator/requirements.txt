@@ -3,3 +3,6 @@ folium
 requests
 geopy
 python-dotenv
+Html
+Css
+Java Script
